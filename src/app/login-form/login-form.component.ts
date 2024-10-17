@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, NgModule, Output, signal } from '@angular/core';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -16,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
     MatIcon,
     MatButtonModule,
     MatButton,
+    FormsModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './login-form.component.html',
@@ -23,6 +26,15 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class LoginFormComponent {
   hide = signal(true);
+  email!: string;
+  password!: string;
+  constructor(private loginService: LoginService) {}
+  
+  onSubmit() {
+    console.log("Form values: ", this.email, " ", this.password);
+    this.loginService.loginAdmin(this.email, this.password);
+  }
+
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
