@@ -25,13 +25,14 @@ import { LoginService } from './login.service';
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent {
-  hide = signal(true);
-  email!: string;
-  password!: string;
+  protected hide = signal(true);
+  protected email!: string;
+  protected password!: string;
+  
   constructor(private loginService: LoginService) {}
   
   onSubmit() {
-    console.log("Form values: ", this.email, " ", this.password);
+    //console.log("Form values: ", this.email, " ", this.password);
     this.loginService.loginAdmin(this.email, this.password);
   }
 
