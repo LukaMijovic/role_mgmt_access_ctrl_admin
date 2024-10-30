@@ -19,6 +19,7 @@ export class LoginService {
 
     this.http.post<LoginResponseDTO>(url, credentials).subscribe(
       (resData) => {
+        console.log("token received: " + resData.token);
         localStorage.setItem("token", resData.token);
         localStorage.setItem("userId", resData.user_id);
         
