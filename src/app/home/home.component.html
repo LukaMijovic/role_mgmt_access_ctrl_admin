@@ -1,5 +1,8 @@
-<ul>
-    <li *ngFor="let user of uList; index as i">
-        <h3>{{user.Email}}</h3>
-    </li>
-</ul>
+<div>
+    <mat-card *ngFor="let user of uList; index as i">
+        <mat-card-header>{{user.Email}}</mat-card-header>
+        <mat-card-content>{{user.Firstname}} {{user.Lastname}}</mat-card-content>
+        <mat-card-content>{{user.Telephone}}</mat-card-content>
+        <mat-card-content>{{user.UserRegistrationDate}}</mat-card-content>
+    </mat-card>
+</div>

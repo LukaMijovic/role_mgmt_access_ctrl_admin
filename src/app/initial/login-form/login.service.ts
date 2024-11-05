@@ -13,7 +13,7 @@ export class LoginService {
 
   loginAdmin(email: string, password: string) {
 
-    const url = `http://${enviroment.domain}:${enviroment.post}/admin/login`;
+    const url = `http://${enviroment.domain}:${enviroment.port}/admin/login`;
 
     const credentials: AdminCredential = new AdminCredential(email, password);
 

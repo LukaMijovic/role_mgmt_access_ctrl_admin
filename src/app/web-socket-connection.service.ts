@@ -24,18 +24,19 @@ export class WebSocketConnectionService {
     const uc: UserCredentialDTO = msg
     //console.log(uc.Email)
 
-
+    //console.log(uc);
     //this.homeComp.addUserToList()
     this.getUserInfo(uc.UserId).subscribe(user => {
+      //console.log(user);
       this.user = user;
       this.homeService.addUser(this.user);
     });
   }
 
   getUserInfo(userId: number){
-    const url = `http://${enviroment.domain}:${enviroment.post}/admin/user/${userId}`;
+    const url = `http://${enviroment.domain}:${enviroment.port}/admin/user/${userId}`;
 
-    console.log(this.headers.get("Authorization"));
+    //console.log(this.headers.get("Authorization"));
 
     return this.http.get<User>(url, {headers: this.headers}).pipe(
       map(
@@ -47,7 +48,7 @@ export class WebSocketConnectionService {
             resData.Email,
             resData.Telephone,
             resData.Birthdate,
-            resData.userRegistration,
+            resData.UserRegistrationDate,
             -1
           );
         
