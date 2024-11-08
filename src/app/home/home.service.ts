@@ -3,17 +3,19 @@ import { User } from '../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { enviroment } from '../env';
 import { map, single } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserCardService } from './user-card/user-card.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
 
-  public userList = signal<User[]>([])
+  public userList = signal<User[]>([]);
   //userList = signal<User[]>([]);
   private headers: HttpHeaders = new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`);
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private router: Router, private userCardService: UserCardService) { 
     
   }
 
@@ -34,6 +36,7 @@ export class HomeService {
 
   getAllRegistraionConfirmations() {
     const url = `http://${enviroment.domain}:${enviroment.port}/admin/user/confirmation`;
+    
   
     return this.http.get<User[]>(url, {headers: this.headers}).pipe(
       map(
@@ -42,5 +45,10 @@ export class HomeService {
         }
       )
     )
+  }
+
+  openUserDetails(url: string, user: User) {
+    this.userCardService.selectedUser.set(user);
+    this.router.navigateByUrl(url);
   }
 }

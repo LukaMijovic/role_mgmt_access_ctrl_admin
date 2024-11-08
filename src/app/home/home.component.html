@@ -4,5 +4,8 @@
         <mat-card-content>{{user.Firstname}} {{user.Lastname}}</mat-card-content>
         <mat-card-content>{{user.Telephone}}</mat-card-content>
         <mat-card-content>{{user.UserRegistrationDate}}</mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-raised-button (click)="openUserDetails(user)">Details</button>
+        </mat-card-actions>
     </mat-card>
 </div>
