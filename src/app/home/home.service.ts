@@ -49,6 +49,7 @@ export class HomeService {
 
   openUserDetails(url: string, user: User) {
     this.userCardService.selectedUser.set(user);
+    localStorage.setItem("selectedUser", "" + user.UserID);
     this.router.navigateByUrl(url);
   }
 }
