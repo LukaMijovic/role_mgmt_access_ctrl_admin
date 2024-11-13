@@ -23,6 +23,9 @@ export class HomeService {
     //console.log("Adding new user to list");
     //this.userList().push(u);
     //this.userList.set(this.userList());
+
+    console.log(this.userList());
+
     for (let i = 0; i < this.userList().length; i++) {
       if (this.userList()[i].Email === u.Email) {
         return;

@@ -78,7 +78,6 @@ export class UserCardComponent {
     this.userCardService.addRoleToAUser(this.user.UserID, roleId).subscribe(
       res => {
         alert(res.message);
-
         this.router.navigateByUrl("/home");
       }
     );

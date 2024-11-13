@@ -34,6 +34,11 @@ export class HomeComponent {
     this.homeService.getAllRegistraionConfirmations().subscribe(
       users => {
         //console.log(users)
+
+        if (users === null) {
+          users = [];
+        }
+
         this.homeService.userList.set(users)
         this.uList = users;
       }
