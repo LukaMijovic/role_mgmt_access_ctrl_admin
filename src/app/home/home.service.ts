@@ -5,6 +5,7 @@ import { enviroment } from '../env';
 import { map, single } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserCardService } from './user-card/user-card.service';
+import { Device } from '../models/device';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { UserCardService } from './user-card/user-card.service';
 export class HomeService {
 
   public userList = signal<User[]>([]);
+  public deviceList = signal<Device[]>([]);
   //userList = signal<User[]>([]);
   private headers: HttpHeaders = new HttpHeaders().append('Authorization', `Bearer ${localStorage.getItem("token")}`);
 
@@ -44,6 +46,31 @@ export class HomeService {
     return this.http.get<User[]>(url, {headers: this.headers}).pipe(
       map(
         resData => {
+          return resData;
+        }
+      )
+    )
+  }
+
+  getAllUserDevices() {
+    const url = `http://${enviroment.domain}:${enviroment.port}/admin/devices`;
+
+    return this.http.get<Device[]>(url, {headers: this.headers}).pipe(
+      map(
+        resData => {
+          return resData;
+        }
+      )
+    )
+  }
+
+  getAllUsersWithIds(ids: number[]) {
+    const url = `http://${enviroment.domain}:${enviroment.port}/admin/device/users`;
+
+    return this.http.post<User[]>(url, ids,{headers: this.headers}).pipe(
+      map(
+        resData => {
+          //console.log(resData);
           return resData;
         }
       )

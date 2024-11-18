@@ -1,11 +1,31 @@
-<div>
-    <mat-card *ngFor="let user of uList; index as i">
-        <mat-card-header>{{user.Email}}</mat-card-header>
-        <mat-card-content>{{user.Firstname}} {{user.Lastname}}</mat-card-content>
-        <mat-card-content>{{user.Telephone}}</mat-card-content>
-        <mat-card-content>{{user.UserRegistrationDate}}</mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-raised-button (click)="openUserDetails(user)">Details</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
+<section>   
+    <mat-tab-group>
+      <mat-tab label="Users">
+        <div>
+            <mat-card *ngFor="let user of uList; index as i">
+                <mat-card-header>{{user.Email}}</mat-card-header>
+                <mat-card-content>{{user.Firstname}} {{user.Lastname}}</mat-card-content>
+                <mat-card-content>{{user.Telephone}}</mat-card-content>
+                <mat-card-content>{{user.UserRegistrationDate}}</mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-raised-button (click)="openUserDetails(user)">Details</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="Devices">
+        @for (device of dList; track device; let i = $index) {
+            <mat-card>
+                <mat-card-header>{{usersWithDevices[i].Email}}</mat-card-header>
+                <mat-card-content>{{usersWithDevices[i].Firstname}} {{usersWithDevices[i].Lastname}}</mat-card-content>
+                <mat-card-content>{{device.IMEI}}</mat-card-content>
+                <!-- <mat-card-content>{{user.Telephone}}</mat-card-content>
+                <mat-card-content>{{user.UserRegistrationDate}}</mat-card-content> -->
+                <mat-card-actions align="end">
+                    <button mat-raised-button (click)="deleteDeviceOfTheUser()">Delete device</button>
+                </mat-card-actions>
+            </mat-card>
+        }
+      </mat-tab>
+    </mat-tab-group>  
+  </section>
